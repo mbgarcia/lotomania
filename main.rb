@@ -6,3 +6,7 @@ require File.expand_path("printer")
 @printer = Printer.new
 @printer.imprime(@loteria.cartoes)
 @printer.gera_arquivo(@loteria.cartoes)
+
+if 4 % 4 == 0
+  puts "div"
+end

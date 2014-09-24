@@ -1,6 +1,4 @@
 class Loteria
-  linhas  = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
-  colunas = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
   #previos = ["12", "15", "76", "90", "54", "09", "34", "89", "01",  "06", "08",  "22", "78", "66", "43", "03", "00", "29", "07",  "82"] 
 
   attr_accessor :cartoes
@@ -8,17 +6,16 @@ class Loteria
 
   def initialize
     @possiveis = []
-    for i in (0..99)
-      numero = i.to_s
-      numero = "0" + numero unless numero.length > 1
-      @possiveis << numero
-    end    
+
+    (0..99).each { |numero| 
+      @possiveis << numero.to_s.rjust(2,"0")
+    }
   end
 
   def aposta
     @cartoes = []
 
-    while @cartoes.length < 60
+    while @cartoes.length < 6
       cartao = ["12", "15", "76", "90", "54", "09", "34", "89", "01",  "06", "08",  "22", "78", "66", "43", "03", "00", "29", "07",  "82"] 
 
       while cartao.length < 50
