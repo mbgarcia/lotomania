@@ -22,7 +22,7 @@
         ver_space = 5.0039
         hor_space = 6.5848
 
-        i = 0
+        i = 1
 
         posicoes_cartao = {1 => [10, 790], 2 => [270, 790], 3 => [10, 390], 4 => [270, 390]}
 
@@ -38,14 +38,15 @@
             end
           end
     
-          i +=  1
+          puts "cartao #{i}"
+
           if i % 4 == 0
             start_new_page()
           end
 
-          document = self
+          i +=  1
 
-          puts "cartao #{i}"
+          document = self
             
           cartao.each do |numero|
             x = numero[1].to_i 
@@ -83,15 +84,6 @@
               :at => [um_x, um_y - box_h / 1.5]
           end
         end
-      end
-    end
-
-    def gera_arquivo (cartoes)
-      File.open("lotomania.txt", "w") do |arquivo|
-        cartoes.each{ |bid|
-          arquivo.write bid
-          arquivo.puts ""
-        }
       end
     end
   end

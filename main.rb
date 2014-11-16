@@ -1,12 +1,11 @@
 require File.expand_path("lotomania")
 require File.expand_path("printer")
+require File.expand_path("file_writer")
 
 @loteria = Loteria.new
-@loteria.aposta
 @printer = Printer.new
-@printer.imprime(@loteria.cartoes)
-@printer.gera_arquivo(@loteria.cartoes)
+@writer  = FileWriter.new
 
-if 4 % 4 == 0
-  puts "div"
-end
+@loteria.aposta
+@printer.imprime(@loteria.cartoes)
+@writer.gera_arquivo(@loteria.cartoes)
