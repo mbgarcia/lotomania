@@ -11,12 +11,26 @@ class Printer
     @box_w = 11.3385
     @box_h = 8.5039
 
+    @pdf_point = 2.8346
+
+    @marker = 5.6692
+
     @ver_space = 5.0039
     @hor_space = 6.5848
+
+    @margin_left_blocks = 79.3688
 
     @pdf = Prawn::Document.new(:page_size => "A4", :layout => :portrait)
     @pdf.font "Courier"
     @pdf.font_size 6
+  end
+
+  def draw_markers
+    (0..10).each do |p|
+      x = @posicoes[@posicao][0] + @pdf_point
+      y = @posicoes[@posicao][1] - @margin_left_blocks  - p * @ver_space - p * @box_h + @pdf_point
+      @pdf.fill_rectangle [x, y] , @box_w,  @marker
+    end
   end
 
   def desenha_borda (i)
@@ -78,6 +92,7 @@ class Printer
     cartoes.each do |cartao| 
 
       desenha_borda i
+      draw_markers
 
       puts "cartao #{i}"
         
