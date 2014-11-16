@@ -31,20 +31,12 @@
         cartoes.each do |cartao| 
 
           fill_color "000000"
+          stroke_rectangle posicoes_cartao[posicao_cartao], largura_cartao, altura_cartao
+          titulo = [posicoes_cartao[posicao_cartao][0] + 40,
+          posicoes_cartao[posicao_cartao][1] - 20]
+          draw_text "Lotomania #{i}", :at => titulo
 
-          stroke do
-            posicoes_cartao.each do |indice, coordenadas|
-              rectangle coordenadas, largura_cartao, altura_cartao  # cartao 1
-            end
-          end
-    
           puts "cartao #{i}"
-
-          if i % 4 == 0
-            start_new_page()
-          end
-
-          i +=  1
 
           document = self
             
@@ -72,8 +64,6 @@
             um_x = posicoes_cartao[posicao_cartao][0] + 31.18104 + x * box_w + x * hor_space
             um_y = posicoes_cartao[posicao_cartao][1] - 218.2642 + box_h + y * ver_space + y * box_h
 
-            posicao_cartao = posicao_cartao == 4 ? 1 : posicao_cartao +=1
-
             document.fill_color "00665B"
             document.fill_rectangle posicoes_cartao[posicao_cartao], box_w,  box_h
 
@@ -83,6 +73,14 @@
             document.draw_text numero,
               :at => [um_x, um_y - box_h / 1.5]
           end
+
+          if i % 4 == 0
+            start_new_page()
+          end
+
+          i +=  1
+
+          posicao_cartao = posicao_cartao == 4 ? 1 : posicao_cartao +=1          
         end
       end
     end
